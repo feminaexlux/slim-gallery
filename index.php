@@ -1,6 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
+require_once 'dao/dao.php';
 \Slim\Slim::registerAutoloader();
 
 $app = new \Slim\Slim(array(
@@ -8,24 +9,19 @@ $app = new \Slim\Slim(array(
     'templates.path' => './view'
 ));
 
-try {
-    $conn = new PDO("mysql:host=192.168.0.108;dbname=gallery", 'gallery', 'gallery');
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    $log = $app->getLog();
-    $log->error($e->getMessage());
-}
+$dao = new DAO();
 
-$app->get('/:name', function ($name) {
-    echo "parameter $name";
+$app->get('/list', function () use ($app, $dao) {
+    $images = $dao->getLatestImages();
+    print_r($images);
 });
 
-$app->get('/', function () use ($app) {
+$app->get('/', function () use ($app, $dao) {
+    $image = $dao->getImage("Alex-Claws.jpg");
     $app->render('base.php',
         array(
             'title' => 'Gallery',
-            'content' => 'Dynamic content I guess?'
+            'content' => "<img src=\"images/{$image['filename']}\">"
         )
     );
 });
