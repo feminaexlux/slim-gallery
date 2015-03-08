@@ -11,19 +11,16 @@ $app = new \Slim\Slim(array(
 
 $dao = new DAO();
 
-$app->get('/list', function () use ($app, $dao) {
-    $images = $dao->getLatestImages();
-    print_r($images);
+$app->get('/latest', function () use ($app, $dao) {
+    echo $dao->getLatestImages();
 });
 
-$app->get('/', function () use ($app, $dao) {
-    $image = $dao->getImage("Alex-Claws.jpg");
-    $app->render('base.php',
-        array(
-            'title' => 'Gallery',
-            'content' => "<img src=\"images/{$image['filename']}\">"
-        )
-    );
+$app->get('/list', function () use ($app, $dao) {
+    echo $dao->getAllImages();
+});
+
+$app->get('/', function () use ($app) {
+    $app->render('base.html');
 });
 
 $app->run();

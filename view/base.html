@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app="galleryApp">
+    <title>Gallery</title>
+    <body>
+        <header>Gallery</header>
+
+        <section id="image">
+
+        </section>
+
+        <section ng-controller="LatestController as latest">
+            <ul>
+                <li ng-repeat="image in latest.images">
+                    <img src="images/thumbnails/{{ image.filename }}">
+                    {{ image.name }}
+                    {{ image.comment }}
+                    {{ image.created }}
+                </li>
+            </ul>
+        </section>
+
+        <footer>&copy; Lani Aung</footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="js/gallery.js"></script>
+    </body>
+</html>

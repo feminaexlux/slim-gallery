@@ -16,9 +16,20 @@ class DAO
         $this->conn = null;
     }
 
+    public function getAllImages() {
+        try {
+            $stmt = $this->conn->prepare('SELECT * FROM image ORDER BY created DESC, "name" ASC');
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute();
+            return json_encode($stmt->fetchAll());
+        } catch(PDOException $e) {
+            echo "Error getting image: $e->getMessage()";
+        }
+    }
+
     public function getLatestImages() {
         try {
-            $stmt = $this->conn->prepare('SELECT * FROM image ORDER BY created DESC LIMIT 10');
+            $stmt = $this->conn->prepare('SELECT * FROM image ORDER BY created DESC, "name" ASC LIMIT 10');
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute();
             return json_encode($stmt->fetchAll());
