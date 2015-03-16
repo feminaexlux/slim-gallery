@@ -1,6 +1,6 @@
 {
     "require": {
-        "symfony/security": "~2.6",
-        "slim/slim": "~2.6"
+          "symfony/security": "~2.6"
+        , "slim/slim": "~2.6"
     }
 }

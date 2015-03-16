@@ -12,11 +12,7 @@ $app = new \Slim\Slim(array(
 $dao = new DAO();
 
 $app->get('/latest', function () use ($app, $dao) {
-    echo $dao->getLatestImages();
-});
-
-$app->get('/list', function () use ($app, $dao) {
-    echo $dao->getAllImages();
+    echo $dao->getTopAlbums();
 });
 
 $app->get('/', function () use ($app) {

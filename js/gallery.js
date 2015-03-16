@@ -3,9 +3,10 @@
 
     app.controller('LatestController', ['$http', function($http){
         var latest = this;
-        latest.images = [];
+        latest.tree = [];
         $http.get('/gallery/latest').success(function(data) {
-            latest.images = data;
+            latest.tree = data;
+            console.log(data);
         });
     }]);
 })();

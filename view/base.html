@@ -10,11 +10,19 @@
 
         <section ng-controller="LatestController as latest">
             <ul>
-                <li ng-repeat="image in latest.images">
-                    <img src="images/thumbnails/{{ image.filename }}">
-                    {{ image.name }}
-                    {{ image.comment }}
-                    {{ image.created }}
+                <li ng-repeat="albumImage in latest.tree">
+                    <img ng-src="images/thumbnails/{{ albumImage.filename }}">
+                    {{ albumImage.albumName }}
+                    {{ albumImage.albumComment }}
+                    {{ albumImage.created }}
+                    <ul>
+                        <li ng-repeat="subAlbumImage in albumImage.children">
+                            <img ng-src="images/thumbnails/{{ subAlbumImage.filename }}">
+                            {{ subAlbumImage.albumName }}
+                            {{ subAlbumImage.albumComment }}
+                            {{ subAlbumImage.created }}
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </section>
