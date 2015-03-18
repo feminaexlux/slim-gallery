@@ -18,8 +18,7 @@ class DAO
 
     public function getTopAlbums() {
         $query = <<<QUERY
-SELECT a.name albumName, a.url albumUrl, a.`comment` albumComment, a.parent,
-    i.filename, i.name imageName, i.url imageUrl, i.`comment` imageComment, i.created
+SELECT a.name, a.url, a.`comment`, a.parent, i.filename
 FROM album a
 JOIN image i ON i.album = a.url
 GROUP BY i.album
@@ -39,7 +38,7 @@ QUERY;
                 } else {
                     for ($index = 0; $index < sizeof($hierarchy); $index++) {
                         $top = $hierarchy[$index];
-                        if ($top["albumUrl"] == $row["parent"]) {
+                        if ($top["url"] == $row["parent"]) {
                             if (!array_key_exists("children", $top)) {
                                 $top["children"] = [];
                             }
@@ -58,12 +57,33 @@ QUERY;
         }
     }
 
-    public function getLatestImages() {
+    public function getAlbum($url) {
         try {
-            $stmt = $this->conn->prepare('');
+            $stmt = $this->conn->prepare("SELECT name, comment, url FROM album WHERE url = :url");
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $stmt->execute();
-            return json_encode($stmt->fetchAll());
+            $stmt->execute(array('url' => $url));
+            $album = $stmt->fetch();
+
+            $stmt = $this->conn->prepare("SELECT filename, name, url FROM image WHERE album = :url");
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute(array('url' => $url));
+            $album["images"] = $stmt->fetchAll();
+
+            $query = <<<QUERY
+SELECT a.name, a.url, a.`comment`, i.filename
+FROM album a
+JOIN image i ON i.album = a.url
+WHERE a.parent = :url
+GROUP BY i.album
+ORDER BY a.parent, a.url, i.created DESC;
+QUERY;
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $stmt->execute(array('url' => $url));
+            $album["children"] = $stmt->fetchAll();
+
+            return json_encode($album);
         } catch(PDOException $e) {
             echo "Error getting image: $e->getMessage()";
         }

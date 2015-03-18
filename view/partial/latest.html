@@ -1,0 +1,23 @@
+<section>
+    <!-- TODO Will need to extract a template from this ul so I can use this recursively -->
+    <ul>
+        <li ng-repeat="album in tree">
+            {{ album.name }}
+            <a ng-href="#/album/{{ album.url }}">
+                <img ng-src="/gallery/images/thumbnails/{{ album.filename }}" alt="{{ album.name }}">
+            </a>
+            {{ album.comment }}
+            {{ album.created }}
+            <ul>
+                <li ng-repeat="subAlbum in album.children">
+                    {{ subAlbum.name }}
+                    <a ng-href="#/album/{{ subAlbum.url }}">
+                        <img ng-src="/gallery/images/thumbnails/{{ subAlbum.filename }}" alt="{{ subAlbum.name }}">
+                    </a>
+                    {{ subAlbum.comment }}
+                    {{ subAlbum.created }}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</section>

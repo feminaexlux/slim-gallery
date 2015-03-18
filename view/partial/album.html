@@ -1,0 +1,13 @@
+<section>
+    <header>
+    <h1>{{ album.name }}</h1>
+    <p>{{ album.comment }}</p>
+</header>
+<ul>
+    <li ng-repeat="image in album.images">
+        <a ng-href="/gallery/image/{{ image.url }}">
+            <img ng-src="/gallery/images/{{ image.filename }}" alt="image.name">
+        </a>
+    </li>
+</ul>
+</section>
