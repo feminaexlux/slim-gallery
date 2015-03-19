@@ -12,6 +12,10 @@
                     controller: 'AlbumController',
                     templateUrl: 'view/partial/album.html'
                 })
+                .when('/image/:name', {
+                    controller: 'ImageController',
+                    templateUrl: 'view/partial/image.html'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -26,6 +30,13 @@
 
             $http.get('/gallery/album/' + name).success(function (data) {
                 $scope.album = data;
+            });
+        }])
+        .controller('ImageController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
+            var name = $routeParams.name;
+
+            $http.get('/gallery/image/' + name).success(function (data) {
+                $scope.image = data;
             });
         }])
 })();

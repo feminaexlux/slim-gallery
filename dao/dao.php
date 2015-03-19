@@ -5,10 +5,10 @@ class DAO
 
     function __construct() {
         try {
-            $this->conn = new PDO("mysql:host=192.168.0.108;dbname=gallery", 'gallery', 'gallery');
+            $this->conn = new PDO("mysql:host=localhost;port=3333;dbname=gallery", 'gallery', 'gallery');
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
-            echo "Connection could not be established: $e->getMessage()";
+            echo "Connection could not be established: {$e->getMessage()}";
         }
     }
 
@@ -89,11 +89,11 @@ QUERY;
         }
     }
 
-    public function getImage($filename) {
+    public function getImage($url) {
         try {
-            $stmt = $this->conn->prepare('SELECT * FROM image WHERE filename = :filename');
+            $stmt = $this->conn->prepare('SELECT * FROM image WHERE url = :url');
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $stmt->execute(array('filename' => $filename));
+            $stmt->execute(array('url' => $url));
             return json_encode($stmt->fetch());
         } catch(PDOException $e) {
             echo "Error getting image: $e->getMessage()";
