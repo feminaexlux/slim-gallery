@@ -1,13 +1,30 @@
 <section>
     <header>
+        <h2 ng-if="album.parent != null">
+            <a ng-href="#/album/{{ album.parent }}">
+                <i class="fa fa-level-up fa-flip-horizontal"></i> {{ album.parentName }}
+            </a>
+        </h2>
+
         <h1>{{ album.name }}</h1>
         <p>{{ album.comment }}</p>
     </header>
+
     <ul>
         <li ng-repeat="image in album.images">
             <a ng-href="#/image/{{ image.url }}">
-                <img ng-src="/gallery/images/medium/{{ image.filename }}" alt="{{ image.name }}">
+                <img ng-src="/gallery/images/full/{{ image.filename }}" alt="{{ image.name }}" class="album-image">
             </a>
+        </li>
+    </ul>
+
+    <ul>
+        <li ng-repeat="child in album.children">
+            {{ child.name }}
+            <a ng-href="#/album/{{ child.url }}">
+                <img ng-src="/gallery/images/thumbnails/{{ child.filename }}" alt="{{ child.name }}" class="album-image">
+            </a>
+            {{ child.comment }}
         </li>
     </ul>
 </section>

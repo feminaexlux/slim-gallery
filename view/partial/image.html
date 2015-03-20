@@ -1,8 +1,16 @@
 <section>
     <header>
+        <h2>
+            <a ng-href="#/album/{{ image.album }}">
+                <i class="fa fa-level-up fa-flip-horizontal"></i> {{ image.albumName }}
+            </a>
+        </h2>
+
         <h1>{{ image.name }}</h1>
         <p>{{ image.comment }}</p>
     </header>
 
     <img ng-src="/gallery/images/full/{{ image.filename }}" alt="{{ image.name }}">
+
+    {{ image.created }}
 </section>
