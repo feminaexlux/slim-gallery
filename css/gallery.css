@@ -4,15 +4,9 @@ html
     width: 100%;
 }
 
-body
-{
-    background: url('heart.svg') no-repeat center center fixed;
-}
-
-
 #container
 {
-    width: 800px;
+    width: 900px;
     margin: 0 auto;
 }
 

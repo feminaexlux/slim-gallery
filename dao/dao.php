@@ -5,7 +5,7 @@ class DAO
 
     function __construct() {
         try {
-            $this->conn = new PDO("mysql:host=192.168.0.108;port=3306;dbname=gallery", 'gallery', 'gallery');
+            $this->conn = new PDO("mysql:host=localhost;port=3333;dbname=gallery", 'gallery', 'gallery');
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
             echo "Connection could not be established: {$e->getMessage()}";
