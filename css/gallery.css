@@ -1,4 +1,10 @@
-#loading
+html
 {
-    /*background: url('heart.svg') no-repeat;*/
+    height: 100%;
+    width: 100%;
+}
+
+body
+{
+    background: url('heart.svg') no-repeat center center;
 }
