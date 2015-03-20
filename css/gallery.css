@@ -6,5 +6,5 @@ html
 
 body
 {
-    background: url('heart.svg') no-repeat center center;
+    background: url('heart.svg') no-repeat center center fixed;
 }
