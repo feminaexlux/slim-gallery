@@ -1,13 +1,18 @@
 <section>
     <!-- TODO Will need to extract a template from this ul so I can use this recursively -->
     <ul class="album-list">
-        <li ng-repeat="album in tree" class="album-top">
-            {{ album.name }}
-            <a ng-href="#/album/{{ album.url }}">
-                <img ng-src="/gallery/images/thumbnails/{{ album.filename }}" alt="{{ album.name }}">
-            </a>
-            {{ album.comment }}
-            {{ album.created }}
+        <li ng-repeat="album in tree" class="album-top" ng-style="{width:'{{ (album.children.length / totalChildren) * (900 - (20 * tree.length)) }}px'}">
+            <section>
+                <header>{{ album.name }}</header>
+                <a ng-href="#/album/{{ album.url }}">
+                    <img ng-src="/gallery/images/thumbnails/{{ album.filename }}" alt="{{ album.name }}">
+                </a>
+                <footer>
+                    {{ album.comment }}
+                    {{ album.created }}
+                </footer>
+            </section>
+
             <ul class="child-list">
                 <li ng-repeat="subAlbum in album.children" class="album-child">
                     {{ subAlbum.name }}

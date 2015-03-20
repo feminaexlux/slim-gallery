@@ -1,4 +1,6 @@
 (function () {
+    "use strict";
+
     var app = angular.module('galleryApp', ['ngRoute']);
 
     app
@@ -42,7 +44,13 @@
         }])
         .controller('LatestController', ['$http', '$scope', function ($http, $scope) {
             $http.get('/gallery/latest').success(function (data) {
+                var totalChildren = 0;
+                data.forEach(function(element) {
+                    totalChildren += element['children'].length;
+                });
+
                 $scope.tree = data;
+                $scope.totalChildren = totalChildren;
             });
         }])
         .controller('AlbumController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {
