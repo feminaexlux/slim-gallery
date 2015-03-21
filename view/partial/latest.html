@@ -1,26 +1,17 @@
-<section>
+<section id="latest">
     <!-- TODO Will need to extract a template from this ul so I can use this recursively -->
     <ul class="album-list">
-        <li ng-repeat="album in tree" class="album-top" ng-style="{width:'{{ (900 / tree.length) - 20 }}px'}">
-            <section>
+        <li ng-repeat="album in tree" class="album-top" ng-style="{width:'{{ albumWidth }}%'}">
+            <section class="album-section">
                 <header>
                     <h1>{{ album.name }}</h1>
                 </header>
-                <a ng-href="#/album/{{ album.url }}">
-                    <img ng-src="/gallery/images/thumbnails/{{ album.filename }}" alt="{{ album.name }}">
-                </a>
-                <footer>
-                    {{ album.created }}
-                </footer>
+                <a ng-href="#/album/{{ album.url }}"><img ng-src="/gallery/images/thumbnails/{{ album.filename }}" alt="{{ album.name }}"></a>
             </section>
 
             <ul class="child-list">
                 <li ng-repeat="subAlbum in album.children" class="album-child">
-                    {{ subAlbum.name }}
-                    <a ng-href="#/album/{{ subAlbum.url }}">
-                        <img ng-src="/gallery/images/thumbnails/{{ subAlbum.filename }}" alt="{{ subAlbum.name }}">
-                    </a>
-                    {{ subAlbum.created }}
+                    <a ng-href="#/album/{{ subAlbum.url }}"><img ng-src="/gallery/images/thumbnails/{{ subAlbum.filename }}" alt="{{ subAlbum.name }}"></a>
                 </li>
             </ul>
         </li>

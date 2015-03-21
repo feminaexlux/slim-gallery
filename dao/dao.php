@@ -5,7 +5,7 @@ class DAO
 
     function __construct() {
         try {
-            $this->conn = new PDO("mysql:host=localhost;port=3333;dbname=gallery", 'gallery', 'gallery');
+            $this->conn = new PDO("mysql:host=192.168.0.108;port=3306;dbname=gallery", 'gallery', 'gallery');
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
             echo "Connection could not be established: {$e->getMessage()}";
@@ -18,11 +18,11 @@ class DAO
 
     public function getTopAlbums() {
         $query = <<<QUERY
-SELECT a.name, a.url, a.parent, i.filename, i.created
+SELECT a.name, a.url, a.parent, i.filename
 FROM album a
-JOIN image i ON i.album = a.url
-GROUP BY i.album
-ORDER BY a.parent, a.url, i.created DESC;
+JOIN image i ON a.url = i.album
+WHERE i.filename = (SELECT i2.filename FROM image i2 WHERE i2.album = i.album ORDER BY created DESC LIMIT 1)
+ORDER BY a.parent, a.url
 QUERY;
 
         try {

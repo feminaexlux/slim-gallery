@@ -29,7 +29,7 @@
                     'request': function(config) {
                         var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 
-                        container.style.background = "url('css/heart.svg') no-repeat center center fixed";
+                        container.style.background = "url('images/heart.svg') no-repeat center center fixed";
                         container.style.minHeight = height + "px";
 
                         return config;
@@ -44,13 +44,8 @@
         }])
         .controller('LatestController', ['$http', '$scope', function ($http, $scope) {
             $http.get('/gallery/latest').success(function (data) {
-                var totalChildren = 0;
-                data.forEach(function(element) {
-                    totalChildren += element['children'].length;
-                });
-
+                $scope.albumWidth = Math.floor(80 / data.length);
                 $scope.tree = data;
-                $scope.totalChildren = totalChildren;
             });
         }])
         .controller('AlbumController', ['$http', '$scope', '$routeParams', function ($http, $scope, $routeParams) {

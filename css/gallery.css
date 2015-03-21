@@ -4,10 +4,24 @@ html
     width: 100%;
 }
 
+body
+{
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 16px;
+}
+
+header h1
+{
+    font-size: 2.5em;
+    margin: 1em 0;
+}
+
 header,
 footer
 {
     clear: both;
+    text-align: center;
+    width: 100%;
 }
 
 ul
@@ -15,17 +29,15 @@ ul
     list-style: none;
 }
 
-#container
+#latest
 {
-    width: 900px;
-    margin: 0 auto;
-    padding: 0;
+    padding: 0 10%;
+    width: 100%;
 }
 
 .album-top
 {
     float: left;
-    padding: 10px;
     text-align: center;
     width: 280px;
 }
@@ -33,12 +45,13 @@ ul
 .album-top img
 {
     border: 3px solid #999;
+    height: 200px;
     padding: 5px;
 }
 
 .album-child img
 {
-    max-height: 75px;
+    height: 100px;
 }
 
 .album-image
