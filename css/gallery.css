@@ -36,6 +36,11 @@ ul
     padding: 5px;
 }
 
+.album-child img
+{
+    max-height: 75px;
+}
+
 .album-image
 {
     max-height: 300px;

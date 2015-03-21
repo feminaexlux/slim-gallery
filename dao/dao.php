@@ -18,7 +18,7 @@ class DAO
 
     public function getTopAlbums() {
         $query = <<<QUERY
-SELECT a.name, a.url, a.`comment`, a.parent, i.filename, i.created
+SELECT a.name, a.url, a.parent, i.filename, i.created
 FROM album a
 JOIN image i ON i.album = a.url
 GROUP BY i.album
