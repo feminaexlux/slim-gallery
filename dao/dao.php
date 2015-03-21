@@ -18,10 +18,11 @@ class DAO
 
     public function getTopAlbums() {
         $query = <<<QUERY
-SELECT a.name, a.url, a.parent, i.filename
+SELECT a.name, a.url, a.parent, i.filename, i.created
 FROM album a
 JOIN image i ON a.url = i.album
-WHERE i.filename = (SELECT i2.filename FROM image i2 WHERE i2.album = i.album ORDER BY created DESC LIMIT 1)
+LEFT JOIN image i2 ON i2.album = i.album AND i2.created > i.created
+WHERE i2.filename IS NULL
 ORDER BY a.parent, a.url
 QUERY;
 
