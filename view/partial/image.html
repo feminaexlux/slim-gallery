@@ -1,13 +1,13 @@
 <header>
+    <h1>{{ image.name }}</h1>
+    <p>{{ image.comment }}</p>
     <nav>
         <ul>
-            <li><a href="#/">Home</a></li>
+            <li><a href="#/"><i class="fa fa-home"></i></a></li>
             <li ng-if="image.parentUrl != null"><a href="#/album/{{ image.parentUrl }}">{{ image.parentName }}</a></li>
             <li><a href="#/album/{{ image.album }}">{{ image.albumName }}</a></li>
         </ul>
     </nav>
-    <h1>{{ image.name }}</h1>
-    <p>{{ image.comment }}</p>
 </header>
 
 <img ng-src="/gallery/images/full/{{ image.filename }}" alt="{{ image.name }}" class="full-image">

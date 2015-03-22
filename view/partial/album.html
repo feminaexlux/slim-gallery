@@ -1,12 +1,12 @@
 <header>
+    <h1>{{ album.name }}</h1>
+    <p>{{ album.comment }}</p>
     <nav>
         <ul>
-            <li><a ng-href="#/">Home</a></li>
+            <li><a ng-href="#/"><i class="fa fa-home"></i></a></li>
             <li ng-if="album.parent != null"><a ng-href="#/album/{{ album.parent }}">{{ album.parentName }}</a></li>
         </ul>
     </nav>
-    <h1>{{ album.name }}</h1>
-    <p>{{ album.comment }}</p>
 </header>
 
 <ul>
