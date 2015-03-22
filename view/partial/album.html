@@ -1,26 +1,28 @@
 <header>
-    <h2 ng-if="album.parent != null">
-        <a ng-href="#/album/{{ album.parent }}"><i class="fa fa-level-up fa-flip-horizontal"></i> {{ album.parentName }}</a>
-    </h2>
-
+    <nav>
+        <ul>
+            <li><a ng-href="#/">Home</a></li>
+            <li ng-if="album.parent != null"><a ng-href="#/album/{{ album.parent }}">{{ album.parentName }}</a></li>
+        </ul>
+    </nav>
     <h1>{{ album.name }}</h1>
     <p>{{ album.comment }}</p>
 </header>
 
 <ul>
-    <li ng-repeat="image in album.images" class="album-top">
-        <a ng-href="#/image/{{ image.url }}">
-            <img ng-src="/gallery/images/thumbnails/{{ image.filename }}" alt="{{ image.name }}">
-        </a>
+    <li ng-repeat="image in album.images">
+        <section>
+            <header><h1><a ng-href="#/image/{{ image.url }}">{{ image.name }}</a></h1></header>
+            <a ng-href="#/image/{{ image.url }}"><img ng-src="/gallery/images/thumbnails/{{ image.filename }}" alt="{{ image.name }}" title="{{ image.created }}"></a>
+        </section>
     </li>
 </ul>
 
-<ul class="child-list">
+<ul class="child">
     <li ng-repeat="child in album.children">
-        {{ child.name }}
-        <a ng-href="#/album/{{ child.url }}">
-            <img ng-src="/gallery/images/thumbnails/{{ child.filename }}" alt="{{ child.name }}" class="album-image">
-        </a>
-        {{ child.comment }}
+        <section>
+            <header><h1><a ng-href="#/album/{{ child.url }}">{{ child.name }}</a></h1></header>
+            <a ng-href="#/album/{{ child.url }}"><img ng-src="/gallery/images/thumbnails/{{ child.filename }}" alt="{{ child.name }}"></a>
+        </section>
     </li>
 </ul>

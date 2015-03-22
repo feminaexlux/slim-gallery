@@ -1,15 +1,16 @@
 <ul>
-    <li ng-repeat="album in tree" class="album-top" ng-style="{width:'{{ albumWidth }}%'}">
+    <li ng-repeat="album in tree">
         <section>
-            <header>
-                <h1><a ng-href="#/album/{{ album.url }}">{{ album.name }}</a></h1>
-            </header>
-            <a ng-href="#/album/{{ album.url }}"><img ng-src="/gallery/images/thumbnails/{{ album.filename }}" alt="{{ album.name }}"></a>
+            <header><h1><a ng-href="#/album/{{ album.url }}">{{ album.name }}</a></h1></header>
+            <a ng-href="#/album/{{ album.url }}"><img ng-src="/gallery/images/thumbnails/{{ album.filename }}" alt="{{ album.name }}" title="{{ album.created }}"></a>
         </section>
 
-        <ul class="child-list">
-            <li ng-repeat="subAlbum in album.children" class="album-child">
-                <a ng-href="#/album/{{ subAlbum.url }}"><img ng-src="/gallery/images/thumbnails/{{ subAlbum.filename }}" alt="{{ subAlbum.name }}"></a>
+        <ul class="child">
+            <li ng-repeat="subAlbum in album.children">
+                <section>
+                    <header><h1><a ng-href="#/album/{{ subAlbum.url }}">{{ subAlbum.name }}</a></h1></header>
+                    <a ng-href="#/album/{{ subAlbum.url }}"><img ng-src="/gallery/images/thumbnails/{{ subAlbum.filename }}" alt="{{ subAlbum.name }}" title="{{ subAlbum.created }}"></a>
+                </section>
             </li>
         </ul>
     </li>

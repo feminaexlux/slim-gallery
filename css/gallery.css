@@ -2,7 +2,7 @@ html
 {
     font-size: 16px;
     min-height: 100%;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     width: 100%;
 }
 
@@ -12,65 +12,115 @@ body
     text-align: center;
 }
 
-header h1
+a:link,
+a:active,
+a:visited,
+a:hover
 {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-size: 2.5em;
-    margin: 1em 0;
+    color: #000;
+    text-decoration: none;
 }
 
-header,
-footer
+h1
 {
-    clear: both;
-    width: 100%;
+    font-size: 2em;
+    margin: .5em 0;
 }
 
-ul
+h2
 {
-    list-style: none;
+    font-size: 1.5em;
+}
+
+header
+{
+    position: relative;
+}
+
+header p
+{
+    margin: 0 auto;
+    width: 50%;
+}
+
+img
+{
+    border: 3px solid #777;
+    padding: 5px;
+}
+
+header img
+{
+    border: none;
+    padding: 0;
+}
+
+li
+{
+    display: inline-block;
+    vertical-align: top;
+    width: 33%;
+}
+
+nav
+{
+    line-height: 1.5em;
+    position: absolute;
+}
+
+nav li
+{
+    width: auto;
+}
+
+nav li:after
+{
+    content: " / ";
+}
+
+nav li:last-child:after
+{
+    content: "";
+}
+
+#container
+{
+    margin: 0 10%;
+    width: 80%;
+}
+
+#container_header
+{
+    padding: 1em;
 }
 
 #container_footer
 {
     background: url('../images/footer.png') repeat-x bottom left;
     bottom: 0;
-    height: 40px;
+    padding-top: 15px;
     position: fixed;
-}
-
-#gallery
-{
-    margin-left: 10%;
-    position: relative;
     width: 80%;
 }
 
-.album-top
+.child h1
 {
-    float: left;
-    width: 280px;
+    font-size: 1em;
+    margin: .75em 0 .25em;
 }
 
-.album-top img
+.child img
 {
-    border: 3px solid #999;
-    height: 200px;
-    margin: .5em;
-    padding: 5px;
+    max-height: 100px;
 }
 
-.album-child img
+.child li
 {
-    height: 100px;
+    width: 100%;
 }
 
-.album-image
+.full-image
 {
-    max-height: 300px;
-}
-
-.child-list
-{
-    clear: both;
+    border: none;
+    padding: 1em;
 }

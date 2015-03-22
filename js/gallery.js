@@ -41,7 +41,6 @@
         }])
         .controller('LatestController', ['$http', '$scope', function ($http, $scope) {
             $http.get('/gallery/latest').success(function (data) {
-                $scope.albumWidth = Math.floor(100 / data.length);
                 $scope.tree = data;
             });
         }])
@@ -49,7 +48,6 @@
             var name = $routeParams.name;
 
             $http.get('/gallery/album/' + name).success(function (data) {
-                $scope.imageWidth = Math.floor(100 / data.images.length);
                 $scope.album = data;
             });
         }])

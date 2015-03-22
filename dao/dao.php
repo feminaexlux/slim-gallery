@@ -76,12 +76,13 @@ QUERY;
             $album["images"] = $stmt->fetchAll();
 
             $query = <<<QUERY
-SELECT a.name, a.url, a.`comment`, i.filename
+SELECT a.name, a.url, a.parent, i.filename, i.created
 FROM album a
-JOIN image i ON i.album = a.url
-WHERE a.parent = :url
-GROUP BY i.album
-ORDER BY a.parent, a.url, i.created DESC;
+JOIN image i ON a.url = i.album
+LEFT JOIN image i2 ON i2.album = i.album AND i2.created > i.created
+WHERE i2.filename IS NULL
+AND a.parent = :url
+ORDER BY a.parent, a.url
 QUERY;
 
             $stmt = $this->conn->prepare($query);
@@ -96,8 +97,17 @@ QUERY;
     }
 
     public function getImage($url) {
+        $query = <<<QUERY
+SELECT i.*, a.name albumName, a2.url parentUrl, a2.name parentName
+FROM image i
+JOIN album a ON i.album = a.url
+LEFT JOIN album a2 ON a2.url = a.parent
+WHERE i.url = :url
+QUERY;
+
+
         try {
-            $stmt = $this->conn->prepare('SELECT i.*, a.name albumName FROM image i JOIN album a ON a.url = i.album WHERE i.url = :url');
+            $stmt = $this->conn->prepare($query);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute(array('url' => $url));
             return json_encode($stmt->fetch());

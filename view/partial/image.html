@@ -1,16 +1,17 @@
-<section>
-    <header>
-        <h2>
-            <a ng-href="#/album/{{ image.album }}">
-                <i class="fa fa-level-up fa-flip-horizontal"></i> {{ image.albumName }}
-            </a>
-        </h2>
+<header>
+    <nav>
+        <ul>
+            <li><a href="#/">Home</a></li>
+            <li ng-if="image.parentUrl != null"><a href="#/album/{{ image.parentUrl }}">{{ image.parentName }}</a></li>
+            <li><a href="#/album/{{ image.album }}">{{ image.albumName }}</a></li>
+        </ul>
+    </nav>
+    <h1>{{ image.name }}</h1>
+    <p>{{ image.comment }}</p>
+</header>
 
-        <h1>{{ image.name }}</h1>
-        <p>{{ image.comment }}</p>
-    </header>
+<img ng-src="/gallery/images/full/{{ image.filename }}" alt="{{ image.name }}" class="full-image">
 
-    <img ng-src="/gallery/images/full/{{ image.filename }}" alt="{{ image.name }}">
-
+<footer>
     {{ image.created }}
-</section>
+</footer>
