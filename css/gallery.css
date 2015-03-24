@@ -1,13 +1,12 @@
-html
-{
+html {
     font-size: 16px;
     min-height: 100%;
+    min-width: 360px;
     padding-bottom: 50px;
     width: 100%;
 }
 
-body
-{
+body {
     font-family: 'Alegreya Sans', sans-serif;
     text-align: center;
 }
@@ -15,111 +14,78 @@ body
 a:link,
 a:active,
 a:visited,
-a:hover
-{
+a:hover {
     color: #000;
     text-decoration: none;
 }
 
-h1
-{
-    font-size: 2em;
+h1 {
+    font-size: 1.5em;
     margin: .5em 0;
 }
 
-h2
-{
-    font-size: 1.5em;
+h2 {
+    font-size: 1.25em;
 }
 
-header
-{
+header {
     position: relative;
 }
 
-header p
-{
+header p {
     margin: 0 auto;
-    width: 50%;
+    max-width: 80%;
 }
 
-img
-{
+img {
     border: 3px solid #777;
+    max-width: 150px;
     padding: 5px;
 }
 
-header img
-{
-    border: none;
-    padding: 0;
-}
-
-li
-{
-    display: inline-block;
-    vertical-align: top;
-    width: 33%;
-}
-
-nav
-{
+nav {
     margin-top: 1em;
+    white-space: nowrap;
 }
 
-nav li
-{
+nav li {
+    display: inline;
     width: auto;
 }
 
-nav li:after
-{
+nav li:after {
     content: " / ";
 }
 
-nav li:last-child:after
-{
+nav li:last-child:after {
     content: "";
 }
 
-#container
-{
-    margin: 0 10%;
-    width: 80%;
+#container_header img {
+    border: none;
+    max-width: 90%;
+    min-width: 300px;
 }
 
-#container_header
-{
-    padding: 1em;
-}
-
-#container_footer
-{
+#container_footer {
     background: url('../images/footer.png') repeat-x bottom left;
     bottom: 0;
     padding-top: 15px;
     position: fixed;
-    width: 80%;
+    width: 100%;
 }
 
-.child h1
-{
+.child h1 {
     font-size: 1em;
     margin: .75em 0 .25em;
 }
 
-.child img
-{
+.child img {
     max-height: 100px;
 }
 
-.child li
-{
-    width: 100%;
-}
-
-.full-image
-{
+.full-image {
     border: none;
+    max-width: 90%;
     padding: 1em;
 }

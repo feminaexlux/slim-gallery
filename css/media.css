@@ -1,0 +1,55 @@
+@media (min-width: 600px) {
+    html {
+        font-size: 16px;
+    }
+
+    header p {
+        max-width: 500px;
+    }
+
+    li {
+        display: inline-block;
+        vertical-align: top;
+        width: 33%;
+    }
+
+    .child li {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1000px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.75em;
+    }
+
+    header img {
+        border: none;
+        padding: 0;
+    }
+
+    img {
+        max-width: 200px;
+    }
+
+    #container {
+        margin: 0 10%;
+        width: 80%;
+    }
+
+    #container_header {
+        padding: 1em;
+    }
+
+    #container_footer {
+        width: 80%;
+    }
+
+    .child h1 {
+        font-size: 1.5em;
+    }
+}
