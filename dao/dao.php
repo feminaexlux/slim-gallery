@@ -54,7 +54,7 @@ QUERY;
 
             return json_encode($hierarchy);
         } catch(PDOException $e) {
-            echo "Error getting image: $e->getMessage()";
+            echo "Error getting top albums: {$e->getMessage()}";
         }
     }
 
@@ -92,7 +92,7 @@ QUERY;
 
             return json_encode($album);
         } catch(PDOException $e) {
-            echo "Error getting image: {$e->getMessage()}";
+            echo "Error getting album: {$e->getMessage()}";
         }
     }
 
